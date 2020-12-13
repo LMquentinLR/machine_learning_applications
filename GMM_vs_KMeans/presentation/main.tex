@@ -250,17 +250,20 @@
 \frametitle{Note 1}
 \framesubtitle{Efficient Search for New Components}
     When trying to find the component for the greedy algorithm presented in step 2 page 7, the paper mentions two methods:
-    \begin{small}\begin{enumerate}
+    \begin{small}\begin{itemize}
       \item \textbf{old method}: every data point generates a candidate (the point is the mean of a corresponding candidate with the same covariance matrix $\sigma^2.\mathbb{I}$). It yields $n$ candidates in a $O(n^2)$ time complexity, which is unacceptable in most application
-      \item \textbf{new method}: the paper proposes to generates few good candidates
-    \end{enumerate}\end{small}
+      \item \textbf{new method}: the paper proposes to generate a few good candidates instead. For each insertion, the method constructs a fixed number of candidate per existing mixture component (which depends on the size of the existing mixture and the current $k$ value)
+      \begin{small}\begin{itemize}
+      \item the dataset is partitioned in $k$ disjoint subsets. For each subset, two data points are randomly sampled and used to create 2 sub-subsets of the closest elements to them. The means and covariance of those sub-subsets are candidates. Repeat till the number of candidates for each subset is reached
+    \end{itemize}\end{small}
+    \end{itemize}\end{small}
 \end{frame}
 
 %Slide
 \begin{frame}
 \frametitle{Note 2}
 \framesubtitle{Experimental results - datasets}
-    \begin{small}\begin{enumerate}
+    \begin{small}\begin{itemize}
       \item Artifically generated datasets: 50 sets for each combination of the following:
       \begin{small}\begin{enumerate}
         \item points generated in $\mathbb{R}^d$ with $d\in\{2,5\}$,
@@ -268,7 +271,7 @@
         \item with separation $c\in\{1,2,3,4\}$
       \end{enumerate}\end{small}
       \item 100 sets of 500,000 "Brodatz" texture patches of 256x256 pixels
-    \end{enumerate}\end{small}
+    \end{itemize}\end{small}
     \centering \includegraphics[width=0.4\linewidth]{imagens/brodatz.png}
 \end{frame}
 
